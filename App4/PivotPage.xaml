@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="App4.PivotPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App4"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:App4.Data"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                       
+        </Pivot>
+        <TextBlock x:FieldModifier="private" x:Name="chrono" HorizontalAlignment="Left" Height="124" Margin="48,163,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="275"/>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Uid="AddAppBarButton" x:Name="AddAppBarButton" Label="test" Icon="Help" Click="AddAppBarButton_Click" >
+                <Button x:Name="button" Content="Button" Height="100" Width="100"/>
+            </AppBarButton>
+            <AppBarButton x:Uid="StartAppBarButton" x:Name="StartAppBarButton" Label="start" Icon="Play" Click="StartAppBarButton_Click" >
+                <Button x:Name="buttonStart" Content="Button" Height="100" Width="100"/>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
