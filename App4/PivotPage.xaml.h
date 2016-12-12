@@ -8,6 +8,14 @@
 #include "PivotPage.g.h"
 #include <string>
 
+//affiche s sur la sortie
+#define DBOUT( s )            \
+{                             \
+   std::wostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugStringW( os_.str().c_str() );  \
+}
+
 using namespace std;
 
 namespace App4
@@ -26,7 +34,7 @@ namespace App4
 
 	public:
 		PivotPage();
-		
+
 		static void RegisterDependencyProperties();
 		static property Windows::UI::Xaml::DependencyProperty^ DefaultViewModelProperty
 		{
@@ -55,7 +63,6 @@ namespace App4
 			Windows::Foundation::Collections::IObservableMap<Platform::String^, Platform::Object^>^  get();
 		}
 
-		static void taskGPS();
 		static void GetOneShotLocation(int accuracyInMeters, int timeoutSeconds, int maxAgeSeconds);
 
 

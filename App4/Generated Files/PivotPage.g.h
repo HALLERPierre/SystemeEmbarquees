@@ -13,7 +13,6 @@ namespace Windows {
         namespace Xaml {
             namespace Controls {
                 ref class Pivot;
-                ref class TextBlock;
                 ref class AppBarButton;
                 ref class Button;
             }
@@ -34,7 +33,6 @@ namespace App4
         bool _contentLoaded;
     
         private: ::Windows::UI::Xaml::Controls::Pivot^ pivot;
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ chrono;
         private: ::Windows::UI::Xaml::Controls::AppBarButton^ AddAppBarButton;
         private: ::Windows::UI::Xaml::Controls::AppBarButton^ StartAppBarButton;
         private: ::Windows::UI::Xaml::Controls::Button^ buttonStart;

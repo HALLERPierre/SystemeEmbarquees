@@ -24,8 +24,6 @@ void ::App4::PivotPage::InitializeComponent()
 
     // Get the Pivot named 'pivot'
     pivot = safe_cast<::Windows::UI::Xaml::Controls::Pivot^>(static_cast<Windows::UI::Xaml::IFrameworkElement^>(this)->FindName(L"pivot"));
-    // Get the TextBlock named 'chrono'
-    chrono = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(static_cast<Windows::UI::Xaml::IFrameworkElement^>(this)->FindName(L"chrono"));
     // Get the AppBarButton named 'AddAppBarButton'
     AddAppBarButton = safe_cast<::Windows::UI::Xaml::Controls::AppBarButton^>(static_cast<Windows::UI::Xaml::IFrameworkElement^>(this)->FindName(L"AddAppBarButton"));
     // Get the AppBarButton named 'StartAppBarButton'

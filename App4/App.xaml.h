@@ -16,7 +16,6 @@ namespace App4
 	{
 	public:
 		App();
-
 		virtual void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs^ e) override;
 
 	private:

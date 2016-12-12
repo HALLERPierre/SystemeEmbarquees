@@ -1,5 +1,6 @@
 ﻿//
 // PivotPage.xaml.cpp
+// compile with: /clr
 // Implémentation de la classe PivotPage.
 //
 
@@ -13,6 +14,9 @@
 #include <ctime>
 #include <sstream>
 #include <mutex>
+#include <Windows.h>
+
+
 
 using namespace App4;
 using namespace App4::Common;
@@ -37,16 +41,20 @@ using namespace std;
 using namespace Windows::Devices::Geolocation;
 
 // Pour plus d'informations sur le modèle Application Pivot, consultez la page http://go.microsoft.com/fwlink/?LinkID=391641
-static std::thread threadChrono;
-static std::thread threadGPS;
-static void taskChrono(int* s);
+static thread threadChrono;
+static thread threadGPS;
 
+string chronoText;
+static void taskChrono();
+static void taskGPS();
 mutex mutexChrono;
+
+clock_t start;
+double duration;
 
 //static std::thread threadApp;
 Windows::Foundation::IAsyncOperation<Windows::Devices::Geolocation::Geoposition^>^ m_getOperation;
-std::clock_t start;
-double duration;
+
 
 PivotPage::PivotPage()
 {
@@ -62,13 +70,10 @@ PivotPage::PivotPage()
 
 	SetValue(_defaultViewModelProperty, ref new Platform::Collections::Map<String^, Object^>(std::less<String^>()));
 	SetValue(_navigationHelperProperty, navigationHelper);
-
-	int time;
-	// Constructs the new thread and runs it. Does not block execution.
-	threadChrono = thread(taskChrono, &time);
-	threadGPS = thread(App4::PivotPage::taskGPS);
-
 	
+	// Constructs the new thread and runs it. Does not block execution.
+	threadChrono = thread(taskChrono);
+	threadGPS = thread(taskGPS);
 }
 
 DependencyProperty^ PivotPage::_navigationHelperProperty = nullptr;
@@ -186,27 +191,7 @@ void PivotPage::ItemView_ItemClick(Object^ sender, ItemClickEventArgs ^e)
 }
 
 
-static void taskChrono(int *s)
-{
-	for (;;) {
-		start = std::clock();
-		duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
-		std::cout << "printf: " << duration << '\n';
-
-		cout << "taskChrono says: ";
-		wait(2000);
-	}
-}
-
-void PivotPage::taskGPS()
-{
-
-	for (;;) {
-		cout << "taskGPS says: ";
-		wait(2000);
-	}
-}
 
 void PivotPage::GetOneShotLocation(int accuracyInMeters, int timeoutSeconds, int maxAgeSeconds) {
 	Geolocator^ geolocator = ref new Geolocator();
@@ -270,7 +255,26 @@ void PivotPage::GetOneShotLocation(int accuracyInMeters, int timeoutSeconds, int
 
 void App4::PivotPage::StartAppBarButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	if (!mutexChrono.try_lock()) {
-		mutexChrono.lock();
+	
+}
+
+static void taskChrono()
+{
+	for (;;) {
+	
+		duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+		ostringstream strs;
+		strs << duration;
+		DBOUT(duration);
+		wait(2000);
+	}
+}
+
+static void taskGPS()
+{
+
+	for (;;) {
+		cout << "taskGPS says: ";
+		wait(2000);
 	}
 }

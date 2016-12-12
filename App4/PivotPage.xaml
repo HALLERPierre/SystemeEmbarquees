@@ -20,10 +20,18 @@
     </Page.Transitions>
 
     <Grid>
-        <Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
-                       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="263*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="259*"/>
+        </Grid.RowDefinitions>
+        <Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True" Grid.RowSpan="2" Grid.ColumnSpan="2">
+
         </Pivot>
-        <TextBlock x:FieldModifier="private" x:Name="chrono" HorizontalAlignment="Left" Height="124" Margin="48,163,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="275"/>
+        <CaptureElement Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="100" Margin="94,69.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115"/>
     </Grid>
 
     <Page.BottomAppBar>
